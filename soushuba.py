@@ -104,7 +104,7 @@ class SouShuBaClient:
             'username': self.username,
             'password': self.password,
         }
-        response111 = requests.request("POST", url111, headers=headers, data=testdata)
+        response111 = requests.request("POST", url111, headers=headers, json=testdata)
         resp = self.session.post(login_url, proxies=self.proxies, data=payload, headers=headers)
         if resp.status_code == 200:
             logger.info(f'Welcome {self.username}!')

